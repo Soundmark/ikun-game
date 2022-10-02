@@ -235,7 +235,11 @@ const wash = (
   }, 1000);
 };
 
-export const drawControlButton = (app: PIXI.Application, model: Model) => {
+export const drawControlButton = (
+  app: PIXI.Application,
+  model: Model,
+  baseUrl: string
+) => {
   const loader = new PIXI.Loader();
   loader
     .add("/刷新.png")

@@ -24,6 +24,7 @@ const model: Model = {
 const foots = ["荔枝", "酥鳝", "蒸虾头", "圣金饼", "香精煎鱼", "人参公鸡"];
 
 function App() {
+  const baseUrl = process.env.NODE_ENV === "production" ? "/ikun-game" : "";
   const [showStartModal, setShowStartModal] = useState(true);
   const [showFailModal, setShowFailModal] = useState(false);
 
@@ -161,10 +162,10 @@ function App() {
     document.querySelector(".App")?.appendChild(app.view);
     app.stage.sortableChildren = true;
     model.app = app;
-    sound.add("zhiyin", "/只因.mp3");
-    sound.add("niganma", "/你干嘛.mp3");
+    sound.add("zhiyin", baseUrl + "/只因.mp3");
+    sound.add("niganma", baseUrl + "/你干嘛.mp3");
 
-    drawControlButton(app, model);
+    drawControlButton(app, model, baseUrl);
     createMask(app, model);
     createMenuModal(app, model);
     drawCollectRect(app);
