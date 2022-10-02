@@ -1710,6 +1710,11 @@
   resolved "https://registry.yarnpkg.com/@pixi/settings/-/settings-6.5.3.tgz#68bfe8bd5ff73082a692edbec4918a91ec8d8a5b"
   integrity sha512-3T2WCjO37kLuAFDLkfumtWjQMETChANRB2u5cYpCqwss8cO/QiGLW25/tNx12GuI6p6QiGx/SjsT4OoNHiPSgg==
 
+"@pixi/sound@4.x":
+  version "4.3.1"
+  resolved "https://registry.npmmirror.com/@pixi/sound/-/sound-4.3.1.tgz#8c8116234a1b7d48b418f1b5e06f1ee94dc66fa8"
+  integrity sha512-KpzJIErU2UbgrrI/6cIbZ0BsWPUDma86TyB9vz7cyJ9W4MHVZx1EYCJ0CeWh2XGtvzbUVOozLPnR18ObPZKokA==
+
 "@pixi/sprite-animated@6.5.3":
   version "6.5.3"
   resolved "https://registry.yarnpkg.com/@pixi/sprite-animated/-/sprite-animated-6.5.3.tgz#227b264413668907a26356c183af57ca8580267e"

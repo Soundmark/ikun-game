@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import "./App.css";
+import React, { useEffect, useState } from "react";
 import * as PIXI from "pixi.js";
 import { Card, Model } from "./type";
 import gsap from "gsap";
@@ -10,7 +9,7 @@ import {
   drawCardBody,
   drawControlButton,
 } from "./helper";
-import { isJSDocNamepathType } from "typescript";
+import { sound } from "@pixi/sound";
 
 const model: Model = {
   collectorX: 0,
@@ -18,13 +17,16 @@ const model: Model = {
   collectorArray: [],
   cardWidth: window.innerWidth / 8,
   cardHeight: (window.innerWidth * 5) / 32,
-  isOnMask: false,
+  isOnMask: true,
   bottomArray: [],
 };
 
 const foots = ["荔枝", "酥鳝", "蒸虾头", "圣金饼", "香精煎鱼", "人参公鸡"];
 
 function App() {
+  const [showStartModal, setShowStartModal] = useState(true);
+  const [showFailModal, setShowFailModal] = useState(false);
+
   const drawCollectRect = (app: PIXI.Application) => {
     const roundBox = new PIXI.Graphics();
     roundBox.lineStyle(4, 0xb98340, 1);
@@ -109,6 +111,10 @@ function App() {
     card.interactive = !upList.length;
     card.on("pointertap", ({ target }: { target: Card }) => {
       if (target.gameInfo?.isCollected || model.isOnMask) return;
+      if (target.gameInfo?.text === "鸡") {
+        sound.play("zhiyin");
+      }
+
       target.zIndex = 1000;
       gsap.to(target, {
         x: model.collectorX + 2 + model.collectorArray.length * width,
@@ -135,6 +141,11 @@ function App() {
               y: model.collectorY + 2,
             });
           });
+        } else if (model.collectorArray.length === 7) {
+          sound.play("niganma");
+          setShowFailModal(true);
+          model.mask!.visible = true;
+          model.isOnMask = true;
         }
       }, 600);
     });
@@ -150,11 +161,14 @@ function App() {
     document.querySelector(".App")?.appendChild(app.view);
     app.stage.sortableChildren = true;
     model.app = app;
+    sound.add("zhiyin", "/只因.mp3");
+    sound.add("niganma", "/你干嘛.mp3");
 
     drawControlButton(app, model);
     createMask(app, model);
     createMenuModal(app, model);
     drawCollectRect(app);
+    model.mask!.visible = true;
     const allItemArr = getFreeList(
       new Array(20).fill(foots).reduce((acc: string[], cur: string[]) => {
         cur.forEach((item) => {
@@ -276,7 +290,59 @@ function App() {
     });
   }, []);
 
-  return <div className="App" style={{ height: "100%" }}></div>;
+  return (
+    <div style={{ height: "100%", position: "relative" }}>
+      <div className="App" style={{ height: "100%" }}></div>
+      {showStartModal && (
+        <div
+          style={{
+            position: "absolute",
+            width: "60%",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+            textAlign: "center",
+            padding: "10px",
+            background: "pink",
+            border: "3px solid pink",
+            borderRadius: "5px",
+          }}
+        >
+          <div style={{ textAlign: "left", color: "#007acc" }}>
+            坤坤有点事，你能帮忙照看一下餐馆吗？
+          </div>
+          <button
+            onClick={() => {
+              setShowStartModal(false);
+              model.isOnMask = false;
+              model.mask!.visible = false;
+            }}
+          >
+            开始
+          </button>
+        </div>
+      )}
+      {showFailModal && (
+        <div
+          style={{
+            position: "absolute",
+            width: "60%",
+            left: "50%",
+            top: "50%",
+            transform: "translate(-50%, -50%)",
+            textAlign: "center",
+            padding: "10px",
+            background: "black",
+            borderRadius: "5px",
+          }}
+        >
+          <div style={{ textAlign: "left", color: "#fff" }}>
+            小黑子，露出鸡脚了吧！！
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default App;

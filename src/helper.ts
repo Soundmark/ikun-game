@@ -266,6 +266,7 @@ export const drawControlButton = (app: PIXI.Application, model: Model) => {
       container3.interactive = true;
       container3.name = "menuBtn";
       container3.on("pointertap", () => {
+        if (model.isOnMask) return;
         if (model.mask && model.menu) {
           const menuWidth = model.menu.width;
           const menuHeight = model.menu.height;
@@ -298,6 +299,7 @@ export const drawControlButton = (app: PIXI.Application, model: Model) => {
       container1.y = window.innerHeight - height - 10;
       container1.interactive = true;
       container1.on("pointertap", () => {
+        if (model.isOnMask) return;
         const main: any[] = [];
         const leftBottom: any[] = [];
         const rightBottom: any[] = [];
@@ -334,6 +336,7 @@ export const drawControlButton = (app: PIXI.Application, model: Model) => {
       container2.y = window.innerHeight - height - 10;
       container2.interactive = true;
       container2.on("pointertap", () => {
+        if (model.isOnMask) return;
         getFreeList(model.collectorArray).forEach((item, index) => {
           item.gameInfo!.isCollected = false;
           item.zIndex = 100;
