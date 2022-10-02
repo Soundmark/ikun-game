@@ -242,9 +242,9 @@ export const drawControlButton = (
 ) => {
   const loader = new PIXI.Loader();
   loader
-    .add("/刷新.png")
-    .add("/转换开关.png")
-    .add("/菜单.png")
+    .add(baseUrl + "/刷新.png")
+    .add(baseUrl + "/转换开关.png")
+    .add(baseUrl + "/菜单.png")
     .load(() => {
       const width = window.innerWidth / 5;
       const height = (width * 12) / 15;
