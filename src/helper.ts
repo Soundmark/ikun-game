@@ -258,7 +258,9 @@ export const drawControlButton = (
       };
 
       const bg3 = createBG();
-      const menu = new PIXI.Sprite(loader.resources["/菜单.png"].texture);
+      const menu = new PIXI.Sprite(
+        loader.resources[baseUrl + "/菜单.png"].texture
+      );
       menu.width = 50;
       menu.height = 50;
       menu.x = (width - 50) / 2;
