@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/ikun-game/static/css/main.94dba82f.css",
-    "main.js": "/ikun-game/static/js/main.2a82298d.js",
+    "main.js": "/ikun-game/static/js/main.bfe2db2b.js",
     "index.html": "/ikun-game/index.html",
     "main.94dba82f.css.map": "/ikun-game/static/css/main.94dba82f.css.map",
-    "main.2a82298d.js.map": "/ikun-game/static/js/main.2a82298d.js.map"
+    "main.bfe2db2b.js.map": "/ikun-game/static/js/main.bfe2db2b.js.map"
   },
   "entrypoints": [
     "static/css/main.94dba82f.css",
-    "static/js/main.2a82298d.js"
+    "static/js/main.bfe2db2b.js"
   ]
 }
