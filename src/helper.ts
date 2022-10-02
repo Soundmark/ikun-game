@@ -294,7 +294,9 @@ export const drawControlButton = (
       });
 
       const bg1 = createBG();
-      const refresh = new PIXI.Sprite(loader.resources["/刷新.png"].texture);
+      const refresh = new PIXI.Sprite(
+        loader.resources[baseUrl + "/刷新.png"].texture
+      );
       refresh.width = 50;
       refresh.height = 50;
       refresh.x = (width - 50) / 2;
@@ -330,7 +332,7 @@ export const drawControlButton = (
 
       const bg2 = createBG();
       const distill = new PIXI.Sprite(
-        loader.resources["/转换开关.png"].texture
+        loader.resources[baseUrl + "/转换开关.png"].texture
       );
       distill.width = 50;
       distill.height = 50;
